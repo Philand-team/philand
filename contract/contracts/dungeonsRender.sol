@@ -238,8 +238,8 @@ contract dungeonsRender {
 
         // Base64 Encode svg and output
         string memory json = Base64.encode(bytes(string(
-            abi.encodePacked('{"name": "Crypts and Caverns #', toString(tokenId),
-             '", "description": "Crypts and Caverns is an onchain map generator that produces an infinite set of dungeons. Enemies, treasure, etc intentionally omitted for others to interpret. Feel free to use Crypts and Caverns in any way you want.", "attributes": [ {"trait_type": "name", "value": "',
+            abi.encodePacked('{"name": "ENS make PhiLands #', toString(tokenId),
+             '", "description": "ENS make PhiLands is an onchain map generator that produces an infinite set of dungeons. Enemies, treasure, etc intentionally omitted for others to interpret. Feel free to use Crypts and Caverns in any way you want.", "attributes": [ {"trait_type": "name", "value": "',
              dungeon.dungeonName, 
              '"}, {"trait_type": "size", "value": "',
              size, 

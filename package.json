@@ -1,0 +1,26 @@
+{
+  "name": "pre-nft-hack-ethglobal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "changelog.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NYSM-admin/pre-nft-hack-ethglobal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NYSM-admin/pre-nft-hack-ethglobal/issues"
+  },
+  "homepage": "https://github.com/NYSM-admin/pre-nft-hack-ethglobal#readme",
+  "devDependencies": {
+    "git-cz": "^4.8.0",
+    "hardhat": "^2.8.2",
+    "standard-version": "^9.3.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  }
+}
