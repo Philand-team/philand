@@ -40,21 +40,6 @@ async function main() {
     seeder.address
   );
   console.log(`Dungeons Contract Address: ${dungeons.address}`);
-
-  const countryContractFactory = await ethers.getContractFactory("CountryLand");
-
-  const countryContract = await countryContractFactory.deploy(
-    ["Japan", "US", "AUS"],
-    [
-      "https://bafkreiek3wfrrshjthcfavts6hgwoojowvakmp7t5mexhnoefm5hv4vydy.ipfs.dweb.link/",
-      "https://bafkreicxciez4oysbhlzupp7uxrzuniiyqkzybbijounyomw65ogxfq4y4.ipfs.dweb.link/",
-      "https://bafkreif4z2yt7odyw2czdv75jfkpskcmszwviyoytihrdumwfrvses7fsa.ipfs.dweb.link/",
-    ],
-    [100, 200, 300],
-    [100, 50, 25]
-  );
-
-  console.log("Country Contract deployed to:", countryContract.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

@@ -4,23 +4,19 @@ import React, { useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import Ownverse from './assets/ownverse.png';
 import subDomain from './utils/Subdomain.json';
-import SelectCharacter from './components/SelectCharacter';
 import LoadingIndicator from './components/LoadingIndicator';
 import Dungeons from './components/Dungeons';
 import { SUBDOMAIN_CONTRACT_ADDRESS } from './constants';
 
 const TWITTER_HANDLE = 'phi_xyz';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const OPENSEA_LINK = `https://testnets.opensea.io/collection/${SUBDOMAIN_CONTRACT_ADDRESS}`;
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [ENScheck, setENScheck] = useState(0);
   const [mintingPHILAND, setMintingPHILAND] = useState(false);
-  const [, setCharacterNFT] = useState(null);
   const [isLoading,] = useState(false);
     
-  
   useEffect(() => {
     const checkIfWalletIsConnected = async () => {
       const { ethereum } = window;
@@ -174,15 +170,7 @@ const renderContent = () => {
       
     );
   } 
-   
-  // } else if (currentAccount && ENScheck && !characterNFT) {
-  //   return (
-  //     <div>hello</div>
-  //   )
-    // return (
-    //   // <Arena characterNFT={characterNFT} setCharacterNFT={setCharacterNFT} />
-    // );
-
+  
 };
   return (
     
@@ -208,9 +196,6 @@ const renderContent = () => {
     )}
         </div>
         <hr/>
-        <p className="header gradient-text"><span role="img" aria-label="battle">⚔️</span> Make New Land <span role="img" aria-label="battle">⚔️</span></p>
-        
-        <SelectCharacter setCharacterNFT={setCharacterNFT} />;
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
           <a
@@ -219,15 +204,6 @@ const renderContent = () => {
             target="_blank" rel="noopener noreferrer"
           >{`built on @${TWITTER_HANDLE}`}</a>
         </div>
-        <div className="footer-container">
-         
-          <a
-            className="footer-text"
-            href={OPENSEA_LINK}
-            target="_blank" rel="noopener noreferrer"
-          >{`open sea test`}</a>
-        </div>
-     
     </div>
   );
 }

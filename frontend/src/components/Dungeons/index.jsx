@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './Dungeons.css';
 import { ethers } from 'ethers';
-// import { CONTRACT_ADDRESS, transformCharacterData } from '../../constants';
 import '../../styles/App.css';
 import DungeonsSOL from '../../utils/Dungeons.json';
-// import myEpicGame from '../../utils/MyEpicGame.json';
 import LoadingIndicator from '../LoadingIndicator';
 import { DUNGEONS_CONTRACT_ADDRESS } from '../../constants';
 const Dungeons = ({ ENScheck }) => {
   // State
-const [gameContract, setGameContract] = useState(null);
+const [dungeonsContract, setDungeonsContract] = useState(null);
 const [mintingCharacter, setMintingCharacter] = useState(false);
 const [ensSVG, setensSVG] = useState(false);
 // UseEffect
@@ -20,16 +18,13 @@ useEffect(() => {
   if (ethereum) {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
-    const gameContract = new ethers.Contract(
+    const dungeonsContract = new ethers.Contract(
       DUNGEONS_CONTRACT_ADDRESS,
       DungeonsSOL.abi,
       signer
     );
 
-    /*
-     * This is the big difference. Set our gameContract in state.
-     */
-    setGameContract(gameContract);
+    setDungeonsContract(dungeonsContract);
   } else {
     console.log('Ethereum object not found');
   }
@@ -37,13 +32,13 @@ useEffect(() => {
 
 const mintCharacterNFTAction = (characterId) => async () => {
   try {
-    if (gameContract) {
+    if (dungeonsContract) {
       /*
        * Show our loading indicator
        */
       setMintingCharacter(true);
       console.log('Minting character in progress...');
-      const mintTxn = await gameContract.mint(characterId);
+      const mintTxn = await dungeonsContract.mint(characterId);
       await mintTxn.wait();
       console.log(mintTxn);
       /*
