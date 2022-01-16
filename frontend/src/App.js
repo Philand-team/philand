@@ -40,9 +40,9 @@ function App() {
           console.log("No authorized account found")
       }
       // String, hex code of the chainId of the Rinkebey test network =>rinkeby is down =>change 03
-      const rinkebyChainId = "0x3"; 
+      const rinkebyChainId = "0x4"; 
       if (chainId !== rinkebyChainId) {
-        alert("You are not connected to the Ropsten Test Network!");
+        alert("You are not connected to the Rinkeby Test Network!");
       }
   }
     checkIfWalletIsConnected();
