@@ -18,6 +18,7 @@ contract SubdomainENS is ERC721URIStorage, ReentrancyGuard,Ownable{
     // namehash('eth')
     bytes32 TLD_NODE = 0x93cdeb708b7545dc668eb9280176169d1c33cfd8ed6f04690a0bcc88a93fc4ae;
     address rinkebyResolver = 0xf6305c19e814d2a75429Fd637d01F7ee0E77d615;
+    address ropstenResolver = 0x42D63ae25990889E35F215bC95884039Ba354115;
     // Mapping from token ID to owner address
     mapping(uint256 => address) private _owners;
      // Mapping owner address to subdomain
@@ -85,7 +86,7 @@ contract SubdomainENS is ERC721URIStorage, ReentrancyGuard,Ownable{
         subnode = keccak256(abi.encodePacked(domainNode,keccak256(bytes(subdomain))));
         require(ens.owner(subnode)==address(0),'already minted');
 
-        ens.setSubnodeRecord(domainNode, keccak256(bytes(subdomain)), msg.sender,rinkebyResolver,0);
+        ens.setSubnodeRecord(domainNode, keccak256(bytes(subdomain)), msg.sender,ropstenResolver,0);
         ens.setSubnodeOwner(domainNode,keccak256(bytes(subdomain)),msg.sender);
         _safeMint(msg.sender, newItemId);
         _setTokenURI(newItemId, string(abi.encodePacked("data:application/json;base64,", json)));

@@ -43,5 +43,8 @@
   },
   "browser": {
     "crypto": false
+  },
+  "devDependencies": {
+    "prettier-eslint": "^13.0.0"
   }
 }

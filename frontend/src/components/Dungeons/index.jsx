@@ -8,7 +8,7 @@ import { DUNGEONS_CONTRACT_ADDRESS } from '../../constants';
 const Dungeons = ({ ENScheck }) => {
   // State
 const [dungeonsContract, setDungeonsContract] = useState(null);
-const [mintingCharacter, setMintingCharacter] = useState(false);
+const [mintingPhiland, setMintingPhiland] = useState(false);
 const [ensSVG, setensSVG] = useState(false);
 // UseEffect
 useEffect(() => {
@@ -30,47 +30,46 @@ useEffect(() => {
   }
 }, [ENScheck]);
 
-const mintCharacterNFTAction = (characterId) => async () => {
+const mintPhilandNFTAction = (philandId) => async () => {
   try {
     if (dungeonsContract) {
       /*
        * Show our loading indicator
        */
-      setMintingCharacter(true);
-      console.log('Minting character in progress...');
-      const mintTxn = await dungeonsContract.mint(characterId);
+      setMintingPhiland(true);
+      console.log('Minting philand in progress...');
+      const mintTxn = await dungeonsContract.mint(philandId);
       await mintTxn.wait();
       console.log(mintTxn);
       /*
        * Hide our loading indicator when minting is finished
        */
-      setMintingCharacter(false);
+      setMintingPhiland(false);
       setensSVG(true);
     }
   } catch (error) {
-    console.warn('MintCharacterAction Error:', error);
+    console.warn('MintPhilandAction Error:', error);
     /*
      * If there is a problem, hide the loading indicator as well
      */
-    setMintingCharacter(false);
+    setMintingPhiland(false);
   }
 };
   // Render Methods
-  const renderCharacters = (ENScheck) =>      
+  const renderPhilands = (ENScheck) =>      
         <button
           type="button"
-          className="cta-button connect-wallet-button"
-          onClick={mintCharacterNFTAction(ENScheck)}
+          // className="cta-button connect-wallet-button"
+          onClick={mintPhilandNFTAction(ENScheck)}
         >{`Mint`}
         </button>
   if (!ensSVG) {
   return (
-  <div className="select-character-container">
+  <div className="select-philand-container">
     <h2>Next Mint Your Phi land map.</h2>
-      <div className="character-grid">{renderCharacters(ENScheck)}</div>
-    {/* Only show our loading state if mintingCharacter is true */}
-    {mintingCharacter && (
-      
+      <div className="philand-grid">{renderPhilands(ENScheck)}</div>
+    {/* Only show our loading state if mintingPhiland is true */}
+    {mintingPhiland && (
       <div className="loading">
         <div className="indicator">
           <LoadingIndicator />
@@ -83,7 +82,8 @@ const mintCharacterNFTAction = (characterId) => async () => {
       </div>
     )}
   </div>
-);}else {
+  );
+}else {
   return (
   <div>
         <a
@@ -94,8 +94,6 @@ const mintCharacterNFTAction = (characterId) => async () => {
          </div>
           )
 }
-
-
 };
 
 export default Dungeons;

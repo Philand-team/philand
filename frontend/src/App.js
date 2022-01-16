@@ -8,13 +8,13 @@ import LoadingIndicator from './components/LoadingIndicator';
 import Dungeons from './components/Dungeons';
 import { SUBDOMAIN_CONTRACT_ADDRESS } from './constants';
 
-const TWITTER_HANDLE = 'phi_xyz';
+const TWITTER_HANDLE = 'Philand_xyz';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [ENScheck, setENScheck] = useState(0);
-  const [mintingPHILAND, setMintingPHILAND] = useState(false);
+  const [MintingPHILAND, setMintingPHILAND] = useState(false);
   const [isLoading,] = useState(false);
     
   useEffect(() => {
@@ -39,9 +39,9 @@ function App() {
           console.log("No authorized account found")
       }
       // String, hex code of the chainId of the Rinkebey test network
-      const rinkebyChainId = "0x4"; 
+      const rinkebyChainId = "0x3"; 
       if (chainId !== rinkebyChainId) {
-        alert("You are not connected to the Rinkeby Test Network!");
+        alert("You are not connected to the Ropsten Test Network!");
       }
   }
     checkIfWalletIsConnected();
@@ -61,9 +61,9 @@ function App() {
           console.log(from, tokenId.toNumber())
           setENScheck(tokenId.toNumber())
           alert(`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${SUBDOMAIN_CONTRACT_ADDRESS}/${tokenId.toNumber()}`)
-          setMintingPHILAND(false)
+          
         });
-        
+    
         console.log("Setup event listener!")
 
       } else {
@@ -93,10 +93,11 @@ function App() {
         let ENSTxn = await ENSContract.doregist(subDomainName);
         setMintingPHILAND(true)
         await ENSTxn.wait();
-        alert(`Go ENS https://app.ens.domains/address/${address}/controller and check your new subdomain `);
+        // alert(`Go ENS https://app.ens.domains/address/${address}/controller and check your new subdomain `);
         console.log("Mining...please wait.")
         console.log(ENSTxn);
         alert(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${ENSTxn.hash}`);
+        setMintingPHILAND(false)
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -126,7 +127,7 @@ function App() {
 
 
   const renderMintUI = () => {
-    if(ENScheck===0 &&!mintingPHILAND){
+    if(ENScheck===0&&!MintingPHILAND){
     return (
       <div>
       <p className="sub-text">
@@ -137,7 +138,7 @@ function App() {
     </button>
     </div>
     )
-    }else if(ENScheck!==0 &&!mintingPHILAND){
+    }else if(ENScheck!==0){
       return (<div>
         <a
             className="footer-text"
@@ -182,12 +183,12 @@ const renderContent = () => {
           <img alt="Ownverse" src={Ownverse} />
           
           {currentAccount === "" ? renderContent() : renderMintUI()}
-          {mintingPHILAND && (
+          {MintingPHILAND && (
       <div className="loading">
         <div className="indicator">
           <LoadingIndicator />
-          <p>Minting In Progress...</p>
         </div>
+        <p>Minting In Progress...</p>
         <img
           src="https://media.giphy.com/media/l0HlCxCRMTZFT2H1m/giphy.gif"
           alt="Minting loading indicator"

@@ -1,1 +1,18 @@
 # philand
+
+Deployment from:  0x58Eb67DcA41dAC355cE0E9858bA3e8E9e867FC93
+#rinkeby
+Subdomain deployed to: 0xE472eB1b1f2a5e188Bb397Abd523453f512EE38C
+DungeonsRender deployed to: 0x8351176Be6df85903538fDF9AcAa2680526643E6
+Generator deployed to: 0x3Dae6E285295e20A26ABbADD38ca2b23f026B869
+Seeder deployed to: 0x91d576aFeA450BbFC65C3A49f6698719dE21327D
+Dungeons Contract Address: 0x90A27187A9eC9Ea31D732ebbd0879dC0F9a4B744
+
+
+Deployment from:  0x58Eb67DcA41dAC355cE0E9858bA3e8E9e867FC93
+#ropsten
+Subdomain deployed to: 0x8030B66f024876f34bE1ED3A63fe45F2d110f94E
+DungeonsRender deployed to: 0x54b4e97d32b6C33E6d0A648CECEe1C78c3cC3AF5
+Generator deployed to: 0x6282A35d5CCDe569F2F138628844d1CCaD1d82ef
+Seeder deployed to: 0xFBDe8b322B602D286A8fb09A7adD4ec3764085EC
+Dungeons Contract Address: 0xa88A8C629c99cA1a43B0D85F861C26110B672BAB
