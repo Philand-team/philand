@@ -103,7 +103,7 @@ function App() {
         console.log("Mining...please wait.")
         console.log(ENSTxn);
         console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${ENSTxn.hash}`);
-        await setupEventListener()
+        // await setupEventListener()
         
       } else {
         console.log("Ethereum object doesn't exist!");
@@ -147,10 +147,12 @@ function App() {
           <label>
             <p>subdomain</p>
             <input 
+            size="30"
             type="text" 
             value={subd}
             placeholder="[type].philand.eth"
             onChange={(e) => setsubd(e.target.value)}
+            
         />
           </label>
           <p/>
@@ -201,7 +203,6 @@ const renderContent = () => {
           <p className="header gradient-text">Phi Galaxy</p>
           <p className="header gradient-text"><span role="img" aria-label="battle">⚔️</span> Make Your Ownverse <span role="img" aria-label="battle">⚔️</span></p>
           <img alt="Ownverse" src={Ownverse} />
-          
           {currentAccount === "" ? renderContent() : renderMintUI()}
           {MintingPHILAND && (
       <div className="loading">

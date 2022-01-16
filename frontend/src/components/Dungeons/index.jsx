@@ -9,7 +9,7 @@ const Dungeons = ({ ENScheck }) => {
   // State
 const [dungeonsContract, setDungeonsContract] = useState(null);
 const [mintingPhiland, setMintingPhiland] = useState(false);
-const [ensSVG, setensSVG] = useState(false);
+const [ensSVG, setensSVG] = useState(0);
 // UseEffect
 useEffect(() => {
   console.log(ENScheck);
@@ -28,8 +28,35 @@ useEffect(() => {
   } else {
     console.log('Ethereum object not found');
   }
+  setupEventListener2();
 }, [ENScheck]);
 
+const setupEventListener2 = async () => {
+    try {
+      const { ethereum } = window;
+
+      if (ethereum) {
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const dungeonsContract = new ethers.Contract(
+        DUNGEONS_CONTRACT_ADDRESS,
+        DungeonsSOL.abi,
+        signer
+    );
+        dungeonsContract.on("Minted", (from, tokenId) => {
+          console.log(from, tokenId.toNumber());
+          setensSVG(tokenId.toNumber());
+        });
+    
+        console.log("Setup event listener!")
+
+      }else {
+        console.log("Ethereum object doesn't exist!");
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 const mintPhilandNFTAction = (philandId) => async () => {
   try {
     if (dungeonsContract) {
@@ -44,8 +71,9 @@ const mintPhilandNFTAction = (philandId) => async () => {
       /*
        * Hide our loading indicator when minting is finished
        */
+      
       setMintingPhiland(false);
-      setensSVG(true);
+      
     }
   } catch (error) {
     console.warn('MintPhilandAction Error:', error);
@@ -56,13 +84,15 @@ const mintPhilandNFTAction = (philandId) => async () => {
   }
 };
   // Render Methods
-  const renderPhilands = (ENScheck) =>      
-        <button
+  const renderPhilands = (ENScheck) =>     {
+  if(!ensSVG && !mintingPhiland){ 
+       return ( <button
           type="button"
           className="cta-button connect-wallet-button"
           onClick={mintPhilandNFTAction(ENScheck)}
         >{`4. Mint your land`}
-        </button>
+        </button>)
+  }}
   if (!ensSVG) {
   return (
   <div className="select-philand-container">
@@ -90,8 +120,8 @@ const mintPhilandNFTAction = (philandId) => async () => {
   <div>
         <a
             className="footer-text"
-            // href={`https://testnets.opensea.io/assets/${DUNGEONS_CONTRACT_ADDRESS}/${ENScheck}`}
-            href={"https://testnets.opensea.io/assets?search[query]=0xfCAFF208686849d3455C9f292f53f807C4D71Fab"}
+            href={`https://testnets.opensea.io/assets/${DUNGEONS_CONTRACT_ADDRESS}/${ensSVG}`}
+            // href={"https://testnets.opensea.io/assets?search[query]=0xfCAFF208686849d3455C9f292f53f807C4D71Fab"}
             target="_blank" rel="noopener noreferrer"
           >{`5. Let's see your ENS metaverse`}</a>
           <p className="sub-text">
