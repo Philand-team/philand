@@ -150,7 +150,7 @@ function App() {
             size="30"
             type="text" 
             value={subd}
-            placeholder="[type]"
+            placeholder="[a land name you like in PhiLand]"
             onChange={(e) => setsubd(e.target.value)}
         />
           </label>
@@ -163,7 +163,7 @@ function App() {
     )
     }else if(ENScheck!==0){
       return (<div>
-         <p className="footer-text">Let' see your ENS card`</p>
+         <p className="footer-text">Let's see your ENS card</p>
           <a
           href={`https://testnets.opensea.io/assets/${SUBDOMAIN_CONTRACT_ADDRESS}/${ENScheck}`}
           target="_blank" rel="noopener noreferrer"
