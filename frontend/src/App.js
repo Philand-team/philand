@@ -38,7 +38,7 @@ function App() {
       } else {
           console.log("No authorized account found")
       }
-      // String, hex code of the chainId of the Rinkebey test network
+      // String, hex code of the chainId of the Rinkebey test network =>rinkeby is down =>change 03
       const rinkebyChainId = "0x3"; 
       if (chainId !== rinkebyChainId) {
         alert("You are not connected to the Ropsten Test Network!");
@@ -193,7 +193,7 @@ const renderContent = () => {
           src="https://media.giphy.com/media/l0HlCxCRMTZFT2H1m/giphy.gif"
           alt="Minting loading indicator"
         />
-              </div>
+      </div>
     )}
         </div>
         <hr/>

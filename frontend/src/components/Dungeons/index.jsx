@@ -59,7 +59,7 @@ const mintPhilandNFTAction = (philandId) => async () => {
   const renderPhilands = (ENScheck) =>      
         <button
           type="button"
-          // className="cta-button connect-wallet-button"
+          className="cta-button connect-wallet-button"
           onClick={mintPhilandNFTAction(ENScheck)}
         >{`Mint`}
         </button>
@@ -67,7 +67,7 @@ const mintPhilandNFTAction = (philandId) => async () => {
   return (
   <div className="select-philand-container">
     <h2>Next Mint Your Phi land map.</h2>
-      <div className="philand-grid">{renderPhilands(ENScheck)}</div>
+      {renderPhilands(ENScheck)}
     {/* Only show our loading state if mintingPhiland is true */}
     {mintingPhiland && (
       <div className="loading">
