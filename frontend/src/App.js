@@ -2,6 +2,7 @@ import './styles/App.css';
 import { ethers } from "ethers";
 import React, { useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
+import card from './assets/card.png';
 import Ownverse from './assets/ownverse.png';
 import subDomain from './utils/Subdomain.json';
 import LoadingIndicator from './components/LoadingIndicator';
@@ -138,35 +139,37 @@ function App() {
     return (
       <div>
       <p className="sub-text">
-            "1. Enter a land name you like in PhiLand"
+            "Enter a land name you like in PhiLand"
           </p>
     {/* <button onClick={askContractToMintNft} className="cta-button connect-wallet-button">
       Create Your Sub Domain ENS
     </button> */}
     <form onSubmit={askContractToMintNft}>
           <label>
-            <p>subdomain</p>
             <input 
             size="30"
             type="text" 
             value={subd}
-            placeholder="[type].philand.eth"
+            placeholder="[type]"
             onChange={(e) => setsubd(e.target.value)}
-            
         />
           </label>
+          <p className="sub-sub-text">.philand.eth</p>
           <p/>
-        <button type="submit" className="cta-button connect-wallet-button" >2. Mint your Subdomain</button>
+          
+        <button type="submit" className="cta-button connect-wallet-button" >Mint your Subdomain</button>
       </form>
     </div>
     )
     }else if(ENScheck!==0){
       return (<div>
-        <a
-            className="footer-text"
-            href={`https://testnets.opensea.io/assets/${SUBDOMAIN_CONTRACT_ADDRESS}/${ENScheck}`}
-            target="_blank" rel="noopener noreferrer"
-          >{`3 Let' see your ENS card`}</a>
+         <p className="footer-text">.`Let' see your ENS card`</p>
+          <a
+          href={`https://testnets.opensea.io/assets/${SUBDOMAIN_CONTRACT_ADDRESS}/${ENScheck}`}
+          target="_blank" rel="noopener noreferrer"
+          >
+          <img src={card} alt ="card" width="300" height="200"></img>
+          </a>
           <br/>
           <Dungeons ENScheck={ENScheck}/>;
           </div>
@@ -201,8 +204,7 @@ const renderContent = () => {
         
         <div className="header-container">
           <p className="header gradient-text">Philand</p>
-          <p className="header gradient-text"><span role="img" aria-label="battle">⚔️</span> Mint Your Own Metaverse<span role="img" aria-label="battle">⚔️</span></p>
-          <img alt="Ownverse" src={Ownverse} />
+         
           {currentAccount === "" ? renderContent() : renderMintUI()}
           {MintingPHILAND && (
       <div className="loading">
@@ -220,6 +222,7 @@ const renderContent = () => {
     )}
         </div>
         <hr/>
+        
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
           <a
@@ -228,7 +231,10 @@ const renderContent = () => {
             target="_blank" rel="noopener noreferrer"
           >{`built on @${TWITTER_HANDLE}`}</a>
         </div>
+         <p className="sub-text">アーキテクチャ</p>
+        <img alt="Ownverse" src={Ownverse} />
     </div>
+    
   );
 }
 

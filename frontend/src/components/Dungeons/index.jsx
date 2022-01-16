@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Dungeons.css';
 import { ethers } from 'ethers';
 import '../../styles/App.css';
+import ensland from '../../assets/landcreate.png';
 import DungeonsSOL from '../../utils/Dungeons.json';
 import LoadingIndicator from '../LoadingIndicator';
 import { DUNGEONS_CONTRACT_ADDRESS } from '../../constants';
@@ -90,13 +91,13 @@ const mintPhilandNFTAction = (philandId) => async () => {
           type="button"
           className="cta-button connect-wallet-button"
           onClick={mintPhilandNFTAction(ENScheck)}
-        >{`4. Mint your land`}
+        >{`Mint your land`}
         </button>)
   }}
   if (!ensSVG) {
   return (
   <div className="select-philand-container">
-    <h2>Next Mint Your Phi land map.</h2>
+    <h2>Next Mint Your Philand.</h2>
       {renderPhilands(ENScheck)}
     {/* Only show our loading state if mintingPhiland is true */}
     {mintingPhiland && (
@@ -118,12 +119,15 @@ const mintPhilandNFTAction = (philandId) => async () => {
 }else {
   return (
   <div>
+    <p className="footer-text">.`Let's see your ENS metaverse`</p>
         <a
             className="footer-text"
             href={`https://testnets.opensea.io/assets/${DUNGEONS_CONTRACT_ADDRESS}/${ensSVG}`}
-            // href={"https://testnets.opensea.io/assets?search[query]=0xfCAFF208686849d3455C9f292f53f807C4D71Fab"}
             target="_blank" rel="noopener noreferrer"
-          >{`5. Let's see your ENS metaverse`}</a>
+          ><img src={ensland} alt ="ensland" width="300" height="200">
+            </img>
+          </a>
+
           <p className="sub-text">
             "※It may take few minutes to view on Opensea"
           </p>

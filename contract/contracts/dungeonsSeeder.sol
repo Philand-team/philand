@@ -239,7 +239,7 @@ contract dungeonsSeeder {
             affinity = "none";
             output = unique[uniqueSeed];            
         } else {
-            string[5] memory nameParts;
+            string[6] memory nameParts;
             uint256 baseSeed = random(seed << 16, 0, 38);
             
             if(uniqueSeed <= 300) {
@@ -249,7 +249,8 @@ contract dungeonsSeeder {
                 nameParts[0] = people[random(seed << 23, 0, 12)];
                 nameParts[1] = " ";
                 nameParts[2] = land[baseSeed];
-                output = string(abi.encodePacked(nameParts[0], nameParts[1], nameParts[2]));
+                nameParts[3] = ":Phi";
+                output = string(abi.encodePacked(nameParts[0], nameParts[1], nameParts[2],nameParts[3]));
             } else if(uniqueSeed <= 1800) {
                 // Prefix + Base Land + Suffix
                 legendary = 0;
@@ -259,7 +260,8 @@ contract dungeonsSeeder {
                 nameParts[3] = " of ";
                 affinity = suffixes[random(seed << 27, 0, 59)];
                 nameParts[4] = affinity;
-                output = string(abi.encodePacked(nameParts[0], nameParts[1], nameParts[2], nameParts[3], nameParts[4]));
+                nameParts[5] = ":Phi";
+                output = string(abi.encodePacked(nameParts[0], nameParts[1], nameParts[2], nameParts[3], nameParts[4],nameParts[5]));
             } else if(uniqueSeed <= 4000) {
                 // Base Land + Suffix
                 legendary = 0;
@@ -267,7 +269,8 @@ contract dungeonsSeeder {
                 nameParts[1] = " of ";
                 affinity = suffixes[random(seed << 51, 0, 59)];
                 nameParts[2] = affinity;
-                output = string(abi.encodePacked(nameParts[0], nameParts[1], nameParts[2]));
+                nameParts[3] = ":Phi";
+                output = string(abi.encodePacked(nameParts[0], nameParts[1], nameParts[2],nameParts[3]));
             } else if(uniqueSeed <= 6500) {
                 // Prefix + Base Land 
                 legendary = 0;
@@ -275,7 +278,8 @@ contract dungeonsSeeder {
                 nameParts[0] = prefixes[random(seed << 59, 0, 29)];
                 nameParts[1] = " ";
                 nameParts[2] = land[baseSeed];
-                output = string(abi.encodePacked(nameParts[0], nameParts[1], nameParts[2]));
+                nameParts[3] = ":Phi";
+                output = string(abi.encodePacked(nameParts[0], nameParts[1], nameParts[2],nameParts[3]));
             } else {
                 // Base Land
                 legendary = 0;
