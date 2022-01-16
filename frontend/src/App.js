@@ -82,10 +82,10 @@ function App() {
 
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
-        const accounts = await ethereum.request({
-          method: 'eth_requestAccounts',
-        });
-        const address = accounts[0];
+        // const accounts = await ethereum.request({
+        //   method: 'eth_requestAccounts',
+        // });
+        // const address = accounts[0];
         const signer = provider.getSigner();
         const ENSContract = new ethers.Contract(SUBDOMAIN_CONTRACT_ADDRESS, subDomain.abi, signer);
         // var random = Math.floor( Math.random () * 10) ;
