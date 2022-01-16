@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import React, { useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import card from './assets/card.png';
+import figma from './assets/figma.png';
 import Ownverse from './assets/yourverse.png';
 import subDomain from './utils/Subdomain.json';
 import LoadingIndicator from './components/LoadingIndicator';
@@ -235,7 +236,7 @@ const renderContent = () => {
          <div className="footer-text">Powerd by @ensdomains, @MoralisWeb3, @opensea</div> 
          <hr/>
         <Howmade/>
-       
+       <img alt="figma" src={figma} width="640" height="380"/>
         <div>
           
         </div>
