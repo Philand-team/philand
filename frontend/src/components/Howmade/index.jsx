@@ -8,6 +8,7 @@ const Howmade = () => {
       <p/>
       <div className="sub-sub-sub-text">Contract-Centric Design in which our contract is responsible for generating subdomains and NFTs </div>
       <div className="sub-sub-sub-text">Generation of Land NFTs using random elements of TokenID and block number, conditional on the subdomain. </div>
+      <p/>
       <div>
       <a
             className="sub-sub-text"

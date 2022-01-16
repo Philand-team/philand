@@ -230,6 +230,8 @@ const renderContent = () => {
          <div className="footer-text">Powerd by @ensdomains, @MoralisWeb3, @opensea</div> 
          <hr/>
         <Howmade/>
+        <hr/>
+        <p className="stext">Architecture</p>
        <img alt="figma" src={figma} width="640" height="380"/>
         <div>
           
