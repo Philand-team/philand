@@ -119,7 +119,7 @@ const mintPhilandNFTAction = (philandId) => async () => {
 }else {
   return (
   <div>
-    <p className="footer-text">.`Let's see your ENS metaverse`</p>
+    <p className="footer-text">Let's see your ENS metaverse</p>
         <a
             className="footer-text"
             href={`https://testnets.opensea.io/assets/${DUNGEONS_CONTRACT_ADDRESS}/${ensSVG}`}

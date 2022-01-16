@@ -3,9 +3,10 @@ import { ethers } from "ethers";
 import React, { useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
 import card from './assets/card.png';
-import Ownverse from './assets/ownverse.png';
+import Ownverse from './assets/yourverse.png';
 import subDomain from './utils/Subdomain.json';
 import LoadingIndicator from './components/LoadingIndicator';
+import Howmade from './components/Howmade';
 import Dungeons from './components/Dungeons';
 import { SUBDOMAIN_CONTRACT_ADDRESS } from './constants';
 
@@ -138,9 +139,7 @@ function App() {
     if(ENScheck===0&&!MintingPHILAND){
     return (
       <div>
-      <p className="sub-text">
-            "Enter a land name you like in PhiLand"
-          </p>
+      <p className="sub-text">"Enter a land name you like in PhiLand"</p>
     {/* <button onClick={askContractToMintNft} className="cta-button connect-wallet-button">
       Create Your Sub Domain ENS
     </button> */}
@@ -163,7 +162,7 @@ function App() {
     )
     }else if(ENScheck!==0){
       return (<div>
-         <p className="footer-text">.`Let' see your ENS card`</p>
+         <p className="footer-text">Let' see your ENS card`</p>
           <a
           href={`https://testnets.opensea.io/assets/${SUBDOMAIN_CONTRACT_ADDRESS}/${ENScheck}`}
           target="_blank" rel="noopener noreferrer"
@@ -222,17 +221,32 @@ const renderContent = () => {
     )}
         </div>
         <hr/>
-        
+         <p className="stext">Concept</p>
+        <img alt="Ownverse" src={Ownverse} width="640" height="380"/>
+        <hr/>
+        <p className="stext">How it's made</p>
+        <div className="sub-text">#Development Language</div>
+      <div className="sub-sub-text">Frontend: React. Backend: Solidity </div>
+      <p/>
+      <div className="sub-text">#Forked Code Source</div>
+      <div className="sub-sub-text">Cryptsncaverns(CC-0) </div>
+      <div className="sub-sub-sub-text">https://github.com/threepwave/cryptsandcaverns/blob/main/contract/README.md</div>
+      <p/>
+         <div className="footer-text">Powerd by @ensdomains, @MoralisWeb3, @opensea</div> 
+         <hr/>
+        <Howmade/>
+       
+        <div>
+          
+        </div>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
           <a
             className="footer-text"
             href={TWITTER_LINK}
             target="_blank" rel="noopener noreferrer"
-          >{`built on @${TWITTER_HANDLE}`}</a>
+          >{`build by @${TWITTER_HANDLE}`}</a>
         </div>
-         <p className="sub-text">アーキテクチャ</p>
-        <img alt="Ownverse" src={Ownverse} />
     </div>
     
   );
