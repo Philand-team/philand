@@ -156,7 +156,7 @@ function App() {
         />
           </label>
           <p/>
-        <button type="submit" className="cta-button connect-wallet-button" >2. Make Subdomain</button>
+        <button type="submit" className="cta-button connect-wallet-button" >2. Mint your Subdomain</button>
       </form>
     </div>
     )
@@ -200,8 +200,8 @@ const renderContent = () => {
     <div className="App">
         
         <div className="header-container">
-          <p className="header gradient-text">Phi Galaxy</p>
-          <p className="header gradient-text"><span role="img" aria-label="battle">⚔️</span> Make Your Ownverse <span role="img" aria-label="battle">⚔️</span></p>
+          <p className="header gradient-text">Philand</p>
+          <p className="header gradient-text"><span role="img" aria-label="battle">⚔️</span> Mint Your Own Metaverse<span role="img" aria-label="battle">⚔️</span></p>
           <img alt="Ownverse" src={Ownverse} />
           {currentAccount === "" ? renderContent() : renderMintUI()}
           {MintingPHILAND && (
