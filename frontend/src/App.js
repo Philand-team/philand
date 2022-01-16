@@ -16,6 +16,7 @@ function App() {
   const [ENScheck, setENScheck] = useState(0);
   const [MintingPHILAND, setMintingPHILAND] = useState(false);
   const [isLoading,] = useState(false);
+  const [subd, setsubd] = useState("");
     
   useEffect(() => {
     const checkIfWalletIsConnected = async () => {
@@ -74,7 +75,8 @@ function App() {
     }
   }
 
-  const askContractToMintNft = async () => {
+  const askContractToMintNft = async (event) => {
+    event.preventDefault();
     try {
       const { ethereum } = window;
 
@@ -86,9 +88,10 @@ function App() {
         const address = accounts[0];
         const signer = provider.getSigner();
         const ENSContract = new ethers.Contract(SUBDOMAIN_CONTRACT_ADDRESS, subDomain.abi, signer);
-        var random = Math.floor( Math.random () * 10) ;
-        var random2 = Math.floor( Math.random () * 10);
-        var subDomainName=String(random)+String(random2);
+        // var random = Math.floor( Math.random () * 10) ;
+        // var random2 = Math.floor( Math.random () * 10);
+        // var subDomainName=String(random)+String(random2);
+        const subDomainName=subd;
         console.log(subDomainName)
         let ENSTxn = await ENSContract.doregist(subDomainName);
         setMintingPHILAND(true)
@@ -133,9 +136,20 @@ function App() {
       <p className="sub-text">
             Create Your Metaverse. 
           </p>
-    <button onClick={askContractToMintNft} className="cta-button connect-wallet-button">
+    {/* <button onClick={askContractToMintNft} className="cta-button connect-wallet-button">
       Create Your Sub Domain ENS
-    </button>
+    </button> */}
+    <form onSubmit={askContractToMintNft}>
+          <label>
+            <p>subdomain</p>
+            <input 
+            type="text" 
+            value={subd}
+            onChange={(e) => setsubd(e.target.value)}
+        />
+          </label>
+        <button type="submit" className="cta-button connect-wallet-button" >Create Your Sub Domain ENS</button>
+      </form>
     </div>
     )
     }else if(ENScheck!==0){
