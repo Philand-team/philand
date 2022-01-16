@@ -86,7 +86,7 @@ contract SubdomainENS is ERC721URIStorage, ReentrancyGuard,Ownable{
         subnode = keccak256(abi.encodePacked(domainNode,keccak256(bytes(subdomain))));
         require(ens.owner(subnode)==address(0),'already minted');
 
-        ens.setSubnodeRecord(domainNode, keccak256(bytes(subdomain)), msg.sender,ropstenResolver,0);
+        ens.setSubnodeRecord(domainNode, keccak256(bytes(subdomain)), msg.sender,rinkebyResolver,0);
         ens.setSubnodeOwner(domainNode,keccak256(bytes(subdomain)),msg.sender);
         _safeMint(msg.sender, newItemId);
         _setTokenURI(newItemId, string(abi.encodePacked("data:application/json;base64,", json)));

@@ -6,6 +6,7 @@ import ensland from '../../assets/landcreate.png';
 import DungeonsSOL from '../../utils/Dungeons.json';
 import LoadingIndicator from '../LoadingIndicator';
 import { DUNGEONS_CONTRACT_ADDRESS } from '../../constants';
+
 const Dungeons = ({ ENScheck }) => {
   // State
 const [dungeonsContract, setDungeonsContract] = useState(null);
@@ -44,13 +45,17 @@ const setupEventListener2 = async () => {
         DungeonsSOL.abi,
         signer
     );
+        const accounts = await ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        const address = accounts[0];
         dungeonsContract.on("Minted", (from, tokenId) => {
+          if (address===from.toLowerCase()){
           console.log(from, tokenId.toNumber());
           setensSVG(tokenId.toNumber());
+          }
         });
-    
         console.log("Setup event listener!")
-
       }else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -72,9 +77,7 @@ const mintPhilandNFTAction = (philandId) => async () => {
       /*
        * Hide our loading indicator when minting is finished
        */
-      
       setMintingPhiland(false);
-      
     }
   } catch (error) {
     console.warn('MintPhilandAction Error:', error);
@@ -128,6 +131,10 @@ const mintPhilandNFTAction = (philandId) => async () => {
             </img>
           </a>
 
+          
+          <p className="gradient-text">
+          You successfully become a ENS land owner! <span role="img" aria-label="happy">🎉</span>
+          </p>
           <p className="sub-text">
             "※It may take few minutes to view on Opensea"
           </p>

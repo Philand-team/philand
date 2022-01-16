@@ -48,6 +48,7 @@
   /* インラインブロック化 */
 }
 .gradient-text {
+  font-size: 25px;
   background: -webkit-linear-gradient(left, #60c657 30%, #35aee2 60%);
   background-clip: text;
   -webkit-background-clip: text;

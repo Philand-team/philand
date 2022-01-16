@@ -52,26 +52,30 @@ function App() {
     setupEventListener();
   }, []);
 
-
   // Setup our listener.
   const setupEventListener = async () => {
     try {
       const { ethereum } = window;
-
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
+        const accounts = await ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        const address = accounts[0];
+        console.log(address)
         const connectedContract = new ethers.Contract(SUBDOMAIN_CONTRACT_ADDRESS, subDomain.abi, signer);
         connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
+
+          if (address===from.toLowerCase()){
           console.log(from, tokenId.toNumber())
           setENScheck(tokenId.toNumber())
           alert(`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${SUBDOMAIN_CONTRACT_ADDRESS}/${tokenId.toNumber()}`)  
           setMintingPHILAND(false)
+          }
         }
         );
-    
         console.log("Setup event listener!")
-
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -93,20 +97,15 @@ function App() {
         const address = accounts[0];
         const signer = provider.getSigner();
         const ENSContract = new ethers.Contract(SUBDOMAIN_CONTRACT_ADDRESS, subDomain.abi, signer);
-        // var random = Math.floor( Math.random () * 10) ;
-        // var random2 = Math.floor( Math.random () * 10);
-        // var subDomainName=String(random)+String(random2);
         const subDomainName=subd;
         console.log(subDomainName)
         let ENSTxn = await ENSContract.doregist(subDomainName);
         setMintingPHILAND(true)
         await ENSTxn.wait();
-        console.log(`You got a controller of the subdomain
-        // Check this : https://app.ens.domains/address/${address}/controller  `);
+        console.log(`You got a controller of the subdomain. Check this : https://app.ens.domains/address/${address}/controller  `);
         console.log("Mining...please wait.")
         console.log(ENSTxn);
         console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${ENSTxn.hash}`);
-        // await setupEventListener()
         
       } else {
         console.log("Ethereum object doesn't exist!");
@@ -141,9 +140,7 @@ function App() {
     return (
       <div>
       <p className="sub-text">"Enter a land name you like in PhiLand"</p>
-    {/* <button onClick={askContractToMintNft} className="cta-button connect-wallet-button">
-      Create Your Sub Domain ENS
-    </button> */}
+
     <form onSubmit={askContractToMintNft}>
           <label>
             <input 
@@ -195,16 +192,13 @@ const renderContent = () => {
       </div>
       
     );
-  } 
-  
+  }
 };
   return (
-    
+
     <div className="App">
-        
         <div className="header-container">
           <p className="header gradient-text">Philand</p>
-         
           {currentAccount === "" ? renderContent() : renderMintUI()}
           {MintingPHILAND && (
       <div className="loading">
@@ -249,7 +243,6 @@ const renderContent = () => {
           >{`build by @${TWITTER_HANDLE}`}</a>
         </div>
     </div>
-    
   );
 }
 
