@@ -11,14 +11,13 @@ const Howmade = () => {
       <p/>
       <div>
       <a
-            className="sub-sub-text"
-            href="https://showcase.ethglobal.com/nfthack2022/phi-land"
-            target="_blank" rel="noopener noreferrer"
+        className="sub-sub-text"
+        href="https://showcase.ethglobal.com/nfthack2022/phi-land"
+        target="_blank" rel="noopener noreferrer"
           >{`detail more here...`}</a>
         </div>
  </div>
 
-   
   );
 };
 

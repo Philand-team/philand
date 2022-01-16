@@ -53,6 +53,7 @@ contract SubdomainENS is ERC721URIStorage, ReentrancyGuard,Ownable{
     function getOwnerDomain(address owner) public view virtual returns (string memory) {
         return _subdomains[owner];
     }
+    
     function ownerOf(uint256 tokenId) public view virtual override returns (address) {
         address owner = _owners[tokenId];
         require(owner != address(0), "ERC721: owner query for nonexistent token");

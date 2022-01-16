@@ -173,7 +173,6 @@ function App() {
           </div>
       )
     }
-   
   }
 
 const renderContent = () => {
