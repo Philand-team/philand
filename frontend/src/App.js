@@ -22,6 +22,7 @@ function App() {
   const [subd, setsubd] = useState("");
     
   useEffect(() => {
+    // Check wallets connected.
     const checkIfWalletIsConnected = async () => {
       const { ethereum } = window;
 
@@ -38,11 +39,10 @@ function App() {
           const account = accounts[0];
           console.log("Found an authorized account:", account);
 					setCurrentAccount(account)
-          // setupEventListener()
       } else {
           console.log("No authorized account found")
       }
-      // String, hex code of the chainId of the Rinkebey test network =>rinkeby is down =>change 03
+      // String, hex code of the chainId of the Rinkebey test network
       const rinkebyChainId = "0x4"; 
       if (chainId !== rinkebyChainId) {
         alert("You are not connected to the Rinkeby Test Network!");
@@ -65,8 +65,8 @@ function App() {
         const address = accounts[0];
         console.log(address)
         const connectedContract = new ethers.Contract(SUBDOMAIN_CONTRACT_ADDRESS, subDomain.abi, signer);
+        // Get Subdomain contract mint-Notify and get token_id.
         connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
-
           if (address===from.toLowerCase()){
           console.log(from, tokenId.toNumber())
           setENScheck(tokenId.toNumber())
@@ -102,6 +102,7 @@ function App() {
         let ENSTxn = await ENSContract.doregist(subDomainName);
         setMintingPHILAND(true)
         await ENSTxn.wait();
+        //　set msg.sender as controller owner
         console.log(`You got a controller of the subdomain. Check this : https://app.ens.domains/address/${address}/controller  `);
         console.log("Mining...please wait.")
         console.log(ENSTxn);
@@ -134,7 +135,7 @@ function App() {
     }
   };
 
-
+  // render Subdomain NFT mint
   const renderMintUI = () => {
     if(ENScheck===0&&!MintingPHILAND){
     return (
@@ -190,12 +191,10 @@ const renderContent = () => {
           Connect Wallet To Get Started
         </button>
       </div>
-      
     );
   }
 };
   return (
-
     <div className="App">
         <div className="header-container">
           <p className="header gradient-text">Philand</p>
@@ -221,21 +220,19 @@ const renderContent = () => {
         <hr/>
         <p className="stext">How it's made</p>
         <div className="sub-text">#Development Language</div>
-      <div className="sub-sub-text">Frontend: React. Backend: Solidity </div>
-      <p/>
-      <div className="sub-text">#Forked Code Source</div>
-      <div className="sub-sub-text">Cryptsncaverns(CC-0) </div>
-      <div className="sub-sub-sub-text">https://github.com/threepwave/cryptsandcaverns/blob/main/contract/README.md</div>
-      <p/>
+          <div className="sub-sub-text">Frontend: React. Backend: Solidity </div>
+          <p/>
+          <div className="sub-text">#Forked Code Source</div>
+          <div className="sub-sub-text">Cryptsncaverns(CC-0) </div>
+          <div className="sub-sub-sub-text">https://github.com/threepwave/cryptsandcaverns/blob/main/contract/README.md</div>
+          <p/>
          <div className="footer-text">Powerd by @ensdomains, @MoralisWeb3, @opensea</div> 
          <hr/>
         <Howmade/>
         <hr/>
         <p className="stext">Architecture</p>
-       <img alt="figma" src={figma} width="640" height="380"/>
-        <div>
-          
-        </div>
+        <img alt="figma" src={figma} width="640" height="380"/>
+        <div/>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
           <a

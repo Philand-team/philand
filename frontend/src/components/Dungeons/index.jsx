@@ -12,9 +12,9 @@ const Dungeons = ({ ENScheck }) => {
 const [dungeonsContract, setDungeonsContract] = useState(null);
 const [mintingPhiland, setMintingPhiland] = useState(false);
 const [ensSVG, setensSVG] = useState(0);
+
 // UseEffect
 useEffect(() => {
-  console.log(ENScheck);
   const { ethereum } = window;
 
   if (ethereum) {
@@ -36,7 +36,6 @@ useEffect(() => {
 const setupEventListener2 = async () => {
     try {
       const { ethereum } = window;
-
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
         const signer = provider.getSigner();
@@ -87,8 +86,9 @@ const mintPhilandNFTAction = (philandId) => async () => {
     setMintingPhiland(false);
   }
 };
+
   // Render Methods
-  const renderPhilands = (ENScheck) =>     {
+  const renderPhilands = (ENScheck) =>{
   if(!ensSVG && !mintingPhiland){ 
        return ( <button
           type="button"
@@ -130,8 +130,6 @@ const mintPhilandNFTAction = (philandId) => async () => {
           ><img src={ensland} alt ="ensland" width="300" height="200">
             </img>
           </a>
-
-          
           <p className="gradient-text">
           You successfully become a ENS land owner! <span role="img" aria-label="happy">🎉</span>
           </p>
@@ -139,8 +137,6 @@ const mintPhilandNFTAction = (philandId) => async () => {
             "※It may take few minutes to view on Opensea"
           </p>
          </div>
-          
-
           )
 }
 };
