@@ -134,7 +134,7 @@ const mintPhilandNFTAction = (philandId) => async () => {
           You successfully become a ENS land owner! <span role="img" aria-label="happy">🎉</span>
           </p>
           <p className="sub-text">
-            "※It may take few minutes to view on Opensea"
+            "※It may take a few minutes to view on Opensea"
           </p>
          </div>
           )
