@@ -1,8 +1,14 @@
 # Philand
+## What is this
+Phi Land（φ Land）- Generates a unique Metaverse Land to Anyone with an ENS address.
+https://showcase.ethglobal.com/nfthack2022/phi-land
+
 ## Summary
 - Interpret ENS as a Metaverse address
 - Utilizing the ENS subdomain, you can generate metaverse land NFTs at ●●●.philand.eth
 - Community Owned & Driven
+
+
 ## Rinkeby Contract Address info
 Deployment from:  0x58Eb67DcA41dAC355cE0E9858bA3e8E9e867FC93
 
