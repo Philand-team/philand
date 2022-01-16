@@ -33,7 +33,7 @@
 }
 
 .sub-text {
-  font-size: 25px;
+  font-size: 20px;
   color: white;
 }
 
@@ -94,8 +94,12 @@
 
 .footer-text {
   color: white;
-  font-size: 16px;
+  font-size: 25px;
   font-weight: bold;
+  background: -webkit-linear-gradient(left, #60c657 30%, #35aee2 60%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* KeyFrames */

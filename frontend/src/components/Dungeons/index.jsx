@@ -61,7 +61,7 @@ const mintPhilandNFTAction = (philandId) => async () => {
           type="button"
           className="cta-button connect-wallet-button"
           onClick={mintPhilandNFTAction(ENScheck)}
-        >{`Mint`}
+        >{`4. Mint your land`}
         </button>
   if (!ensSVG) {
   return (
@@ -73,7 +73,9 @@ const mintPhilandNFTAction = (philandId) => async () => {
       <div className="loading">
         <div className="indicator">
           <LoadingIndicator />
-          <p>Minting In Progress...</p>
+          <p className="sub-text">
+            "Minting In Progress..."
+          </p>
         </div>
         <img
           src="https://media.giphy.com/media/f7b9ltJ4FrhnsKjYx2/giphy.gif"
@@ -88,10 +90,16 @@ const mintPhilandNFTAction = (philandId) => async () => {
   <div>
         <a
             className="footer-text"
-            href={`https://testnets.opensea.io/assets/${DUNGEONS_CONTRACT_ADDRESS}/${ENScheck}`}
+            // href={`https://testnets.opensea.io/assets/${DUNGEONS_CONTRACT_ADDRESS}/${ENScheck}`}
+            href={"https://testnets.opensea.io/assets?search[query]=0xfCAFF208686849d3455C9f292f53f807C4D71Fab"}
             target="_blank" rel="noopener noreferrer"
-          >{`Let' see your ENS metaverse`}</a>
+          >{`5. Let's see your ENS metaverse`}</a>
+          <p className="sub-text">
+            "※It may take few minutes to view on Opensea"
+          </p>
          </div>
+          
+
           )
 }
 };

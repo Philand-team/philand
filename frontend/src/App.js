@@ -35,7 +35,7 @@ function App() {
           const account = accounts[0];
           console.log("Found an authorized account:", account);
 					setCurrentAccount(account)
-          setupEventListener()
+          // setupEventListener()
       } else {
           console.log("No authorized account found")
       }
@@ -46,6 +46,7 @@ function App() {
       }
   }
     checkIfWalletIsConnected();
+    setupEventListener();
   }, []);
 
 
@@ -61,9 +62,10 @@ function App() {
         connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
           console.log(from, tokenId.toNumber())
           setENScheck(tokenId.toNumber())
-          alert(`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${SUBDOMAIN_CONTRACT_ADDRESS}/${tokenId.toNumber()}`)
-          
-        });
+          alert(`Hey there! We've minted your NFT and sent it to your wallet. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: https://testnets.opensea.io/assets/${SUBDOMAIN_CONTRACT_ADDRESS}/${tokenId.toNumber()}`)  
+          setMintingPHILAND(false)
+        }
+        );
     
         console.log("Setup event listener!")
 
@@ -82,10 +84,10 @@ function App() {
 
       if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);
-        // const accounts = await ethereum.request({
-        //   method: 'eth_requestAccounts',
-        // });
-        // const address = accounts[0];
+        const accounts = await ethereum.request({
+          method: 'eth_requestAccounts',
+        });
+        const address = accounts[0];
         const signer = provider.getSigner();
         const ENSContract = new ethers.Contract(SUBDOMAIN_CONTRACT_ADDRESS, subDomain.abi, signer);
         // var random = Math.floor( Math.random () * 10) ;
@@ -96,11 +98,13 @@ function App() {
         let ENSTxn = await ENSContract.doregist(subDomainName);
         setMintingPHILAND(true)
         await ENSTxn.wait();
-        // alert(`Go ENS https://app.ens.domains/address/${address}/controller and check your new subdomain `);
+        console.log(`You got a controller of the subdomain
+        // Check this : https://app.ens.domains/address/${address}/controller  `);
         console.log("Mining...please wait.")
         console.log(ENSTxn);
-        alert(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${ENSTxn.hash}`);
-        setMintingPHILAND(false)
+        console.log(`Mined, see transaction: https://rinkeby.etherscan.io/tx/${ENSTxn.hash}`);
+        await setupEventListener()
+        
       } else {
         console.log("Ethereum object doesn't exist!");
       }
@@ -134,7 +138,7 @@ function App() {
     return (
       <div>
       <p className="sub-text">
-            Create Your Metaverse. 
+            "1. Enter a land name you like in PhiLand"
           </p>
     {/* <button onClick={askContractToMintNft} className="cta-button connect-wallet-button">
       Create Your Sub Domain ENS
@@ -145,10 +149,12 @@ function App() {
             <input 
             type="text" 
             value={subd}
+            placeholder="[type].philand.eth"
             onChange={(e) => setsubd(e.target.value)}
         />
           </label>
-        <button type="submit" className="cta-button connect-wallet-button" >Create Your Sub Domain ENS</button>
+          <p/>
+        <button type="submit" className="cta-button connect-wallet-button" >2. Make Subdomain</button>
       </form>
     </div>
     )
@@ -158,7 +164,7 @@ function App() {
             className="footer-text"
             href={`https://testnets.opensea.io/assets/${SUBDOMAIN_CONTRACT_ADDRESS}/${ENScheck}`}
             target="_blank" rel="noopener noreferrer"
-          >{`Let' see your ENS card`}</a>
+          >{`3 Let' see your ENS card`}</a>
           <br/>
           <Dungeons ENScheck={ENScheck}/>;
           </div>
@@ -202,7 +208,9 @@ const renderContent = () => {
         <div className="indicator">
           <LoadingIndicator />
         </div>
-        <p>Minting In Progress...</p>
+        <p className="sub-text">
+            "Minting In Progress..."
+          </p>
         <img
           src="https://media.giphy.com/media/l0HlCxCRMTZFT2H1m/giphy.gif"
           alt="Minting loading indicator"

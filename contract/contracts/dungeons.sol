@@ -63,7 +63,7 @@ contract Dungeons is IDungeons, ERC721Enumerable, ReentrancyGuard, Ownable {
     Subdomain internal subdomainContract;
 
     // Mint Supply
-    uint256 public lastMint = 8000;
+    // uint256 public lastMint = 8000;
     uint256 public claimed = 0;
     bool public restricted = true;  // Restrict claim to subdomain owners by default
 
@@ -81,10 +81,10 @@ contract Dungeons is IDungeons, ERC721Enumerable, ReentrancyGuard, Ownable {
     */
     
     function mint(uint256 tokenId) override public nonReentrant {
-        require(lastMint < 9000, "Token sold out");
+        require(claimed < 9000, "Token sold out");
         require(!restricted || subdomainContract.ownerOf(tokenId) == msg.sender, "Not your Subdomain");
         // require(msg.value >= price, "Insufficient ETH");
-        uint256 tokenId = ++lastMint;    // Grab the top token in the list
+        uint256 tokenId = ++claimed;    // Grab the top token in the list
 
         seeds[tokenId] = seeder.getSeed(tokenId);
         _safeMint(_msgSender(), tokenId);
