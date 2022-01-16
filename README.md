@@ -31,6 +31,10 @@ https://rinkeby.etherscan.io/address/0xfCAFF208686849d3455C9f292f53f807C4D71Fab
 - `/frontend/App.js` - WebUi for making Subdomain NFT and Philand NFT.
 ## Architecture(Figma)
  https://www.figma.com/file/o8NobrsafesdOFqxaRa0um/architecture?node-id=0%3A1
+
+## opensea
+- ENScard https://testnets.opensea.io/collection/philand-subdomain-nft-v4
+- Philand https://testnets.opensea.io/collection/ens-make-philands-v3
 ## Installation
 1. Clone this repository
 2. Install dependencies: `yarn`
